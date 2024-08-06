@@ -1,0 +1,145 @@
+{% extends "users/navbar.html" %}
+{% block title %}Book Services{% endblock title %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .product-container {
+        margin-top: 30px;
+    }
+    .product-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        margin-bottom: 20px;
+        padding: 15px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-row:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .product-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        object-fit: cover;
+        margin-right: 15px;
+    }
+    .product-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333333;
+        margin: 0;
+    }
+    .product-price {
+        font-size: 1rem;
+        color: #e74c3c;
+        margin: 0;
+    }
+    .book-now-btn {
+        background-color: #28a745;
+        color: #ffffff;
+        border-radius: 50px;
+        padding: 5px 15px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .book-now-btn:hover {
+        background-color: #218838;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-menu {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-item:hover {
+        background-color: #f1f1f1;
+    }
+    @media (max-width: 768px) {
+        .product-row {
+            flex-direction: column;
+            text-align: center;
+        }
+        .product-image {
+            width: 80%;
+            margin: 0 0 15px 0;
+        }
+        .product-actions {
+            text-align: center;
+        }
+        .product-actions p {
+            margin: 0;
+        }
+    }
+    @media (max-width: 576px) {
+        .product-row {
+            padding: 10px;
+        }
+        .product-title {
+            font-size: 1rem;
+        }
+        .product-price {
+            font-size: 0.9rem;
+        }
+        .book-now-btn {
+            padding: 4px 10px;
+        }
+    }
+</style>
+
+
+
+<div class="container product-container">
+    <div class="text-start mb-4">
+        <li class="dropdown" style="list-style: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter by price
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/sort/asc">High - Low</a></li>
+                <li><a class="dropdown-item" href="/sort/dsc">Low - High</a></li>
+            </ul>
+        </li>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% for service in services %}
+            <div class="product-row">
+                <div class="d-flex align-items-center">
+                    {% if service.name == "Full wash" %}
+                    <img src="https://blog.way.com/wp-content/uploads/2021/01/part-car-wash-detailing-station-2.jpg" alt="Full wash" class="product-image">
+                    {% elif service.name == "Wheel Replacement" %}
+                    <img src="https://www.autozone.com/diy/wp-content/uploads/2023/09/removing-tire-of-jacked-up-car-duralst-sand-in-bg-870x580.jpg" alt="Wheel Replacement" class="product-image">
+                    {% elif service.name == "Interior Wash" %}
+                    <img src="https://3mcarcarethane.in/images/services/cleaning-car-interior-4.jpg" alt="Interior wash" class="product-image">
+                    {% elif service.name == "Engine Cleaning" %}
+                    <img src="https://rinzerwash.com/wp-content/uploads/2022/10/man-with-clote-cleaning-motor-rinzerwash-1200x900.webp" alt="Engine Cleaning" class="product-image">
+                    {% elif service.name == "Seats Cleaning" %}
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/man-hoovering-seat-of-car-during-car-cleaning-royalty-free-image-1585677173.jpg" alt="Seats Cleaning" class="product-image">
+                    {% endif %}
+                    <div>
+                        <h2 class="product-title">{{ service.name }}</h2>
+                        <p class="product-price">&#x20b9; {{ service.price }}</p>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <a href="/service-book/{{ service.id }}">
+                        <button class="btn book-now-btn">Book Now</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

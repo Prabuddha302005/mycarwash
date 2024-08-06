@@ -1,0 +1,78 @@
+{% extends "users/navbar.html" %}
+{% block title %}Add Address{% endblock title %}
+{% block body %}
+<style>
+    .login {
+        margin-top: 100px;
+        max-width: 400px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .header p {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 400;
+        color: #706b6b;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    form input {
+        height: 40px;
+        outline: none;
+        border: 1px solid #cccccc;
+        padding: 10px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+    form button {
+        background-color: #1111e2;
+        color: #ffffff;
+        font-size: 17px;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    form button:hover {
+        background-color: #0f0fbb;
+    }
+    form span {
+        text-align: center;
+        font-size: 16px;
+        padding-top: 10px;
+        color: #706b6b;
+    }
+    form span a {
+        text-decoration: none;
+        color: #2424cf;
+        font-weight: 500;
+    }
+</style>
+
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="login">
+        <div class="header">
+            <span>Update Delivery Details</span>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Home address" required name="address"/>
+            <input type="number" placeholder="Phone" required name="phone"/>
+            <button type="submit">Save Details</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,32 @@
+{% extends "users/navbar.html" %}
+
+{% block body %}
+
+<div class="container mt-5 p-3 bg-light rounded shadow-sm">
+  <h1 class="text-center mb-4">Your Bookings</h1>
+  <div class="row">
+    {% for my_bookings in mybooking %}
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-primary"><i class="bi bi-stars"></i> {{ my_bookings.service.name }}</h5>
+          <p class="card-text"><i class="fa-solid fa-indian-rupee-sign"></i> <strong>Price:</strong> &#x20b9; {{ my_bookings.service.price }}</p>
+          <p class="card-text"><i class="bi bi-clock-fill"></i> <strong>Status:</strong> 
+            {% if my_bookings.status == 'Confirmed' %}
+            <span class="badge bg-success">{{ my_bookings.status }}</span>
+            {% elif my_bookings.status == 'Pending' %}
+            <span class="badge bg-warning text-dark"><i class="fa-regular fa-clock"></i> {{ my_bookings.status }}</span>
+            {% else %}
+            <span class="badge bg-danger">{{ my_bookings.status }}</span>
+            {% endif %}
+          </p>
+          <p class="card-text"><i class="fa-regular fa-calendar"></i> <strong>Booking Date:</strong> {{ my_bookings.booking_date }}</p>
+          <a href="/cancel/{{ my_bookings.id }}" class="btn btn-danger mt-3">Cancel</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,59 @@
+{% extends "serviceProvider/navbar.html" %}
+{% block styles %}
+<style>
+  .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+  }
+  .message-box {
+    text-align: center;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .message-box i {
+    font-size: 60px;
+    color: #042C73;
+    margin-bottom: 20px;
+  }
+  .message-box h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #042C73;
+    margin-bottom: 10px;
+  }
+  .message-box p {
+    font-size: 18px;
+    color: #706b6b;
+    margin-bottom: 20px;
+  }
+  .message-box a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #042C73;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  .message-box a:hover {
+    background-color: #021B4D;
+  }
+</style>
+{% endblock styles %}
+{% block body %}
+<div class="container">
+  <div class="message-box">
+    <i class="bi bi-check-circle"></i> <!-- You can use Font Awesome or any icon library -->
+    <h1>Business Already Registered</h1>
+    <p>Your business is already registered with us. You can view or update your details at any time.</p>
+    <a href="/provider/business-details/">View Details</a>
+  </div>
+</div>
+{% endblock body %}
